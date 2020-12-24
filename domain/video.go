@@ -21,8 +21,7 @@ func NewVideo() *Video {
 	return &Video{}
 }
 
-func (video *Video) Validate() error {
-	
+func (video *Video) Validate() error {		
 	_, err := govalidator.ValidateStruct(video)
 
 	if err != nil {

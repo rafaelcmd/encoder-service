@@ -45,7 +45,7 @@ func (job *Job) prepare() {
 	job.UpdatedAt = time.Now()
 }
 
-func (job *Job) Validate() error {
+func (job *Job) Validate() error {	
 	_, err := govalidator.ValidateStruct(job)
 
 	if err != nil {
