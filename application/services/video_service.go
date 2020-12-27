@@ -6,7 +6,6 @@ import (
 	"log"
 	"os"
 	"os/exec"
-
 	"cloud.google.com/go/storage"
 	"github.com/rafaelcmd/encoder-service/application/repositories"
 	"github.com/rafaelcmd/encoder-service/domain"
