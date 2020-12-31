@@ -4,7 +4,6 @@ import (
 	"errors"
 	"os"
 	"strconv"
-
 	"github.com/rafaelcmd/encoder-service/application/repositories"
 	"github.com/rafaelcmd/encoder-service/domain"
 )
@@ -94,8 +93,7 @@ func (j *JobService) performUpload() error {
 
 	go videoUpload.ProcessUpload(concurrency, doneUpload)
 
-	var uploadResult string
-	uploadResult = <- doneUpload
+	var uploadResult string = <- doneUpload
 
 	if uploadResult != "upload completed" {
 		return j.failJob(errors.New(uploadResult))

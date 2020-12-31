@@ -8,7 +8,6 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
-
 	"cloud.google.com/go/storage"
 )
 
