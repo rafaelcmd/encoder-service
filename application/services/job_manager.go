@@ -5,6 +5,8 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"sync"
+
 	"github.com/jinzhu/gorm"
 	"github.com/rafaelcmd/encoder-service/application/repositories"
 	"github.com/rafaelcmd/encoder-service/domain"
@@ -18,6 +20,7 @@ type JobManager struct {
 	MessageChannel 		chan amqp.Delivery
 	JobReturnChannel 	chan JobWorkerResult
 	RabbitMQ 			*queue.RabbitMQ
+	Mutex 				sync.Mutex
 }
 
 type JobNotificationError struct {
@@ -68,7 +71,9 @@ func (j *JobManager) Start(ch *amqp.Channel) {
 }
 
 func (j *JobManager) notifySuccess(jobResult JobWorkerResult, ch *amqp.Channel) error {
+	Mutex.Lock()
 	jobJson, err := json.Marshal(jobResult.Job)
+	Mutex.Unlock()
 
 	if err != nil {
 		return err
