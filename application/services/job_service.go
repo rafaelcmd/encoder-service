@@ -21,7 +21,7 @@ func (j *JobService) Start() error {
 		return j.failJob(err)
 	}
 
-	err = j.VideoService.Download(os.Getenv("encoder-service-bucket"))
+	err = j.VideoService.Download(os.Getenv("inputBucketName"))
 
 	if err != nil {
 		return j.failJob(err)
